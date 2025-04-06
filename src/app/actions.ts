@@ -34,8 +34,8 @@ const USER_RESPONSE_REMPLATE = PromptTemplate.fromTemplate(`
     Answer: ""
     `);
 
-const STANDARD_QUESTION_TEMPLATE = PromptTemplate.fromTemplate(`
-        Given some eonversastion history (if any) and a question, create a standalone question.
+const STANDALONE_QUESTION_TEMPLATE = PromptTemplate.fromTemplate(`
+        Given some cnversastion history (if any) and a question, create a standalone question.
         Conversation history: {conversation_history}
         ---
         Question: {question}
@@ -44,7 +44,7 @@ const STANDARD_QUESTION_TEMPLATE = PromptTemplate.fromTemplate(`
 
 export async function ask(value: string): Promise<ConversationMessage> {
   const standaloneQuestionSequence = RunnableSequence.from([
-    STANDARD_QUESTION_TEMPLATE,
+    STANDALONE_QUESTION_TEMPLATE,
     llm,
     new StringOutputParser(),
     retriever,
